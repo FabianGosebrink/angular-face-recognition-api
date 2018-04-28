@@ -1,0 +1,96 @@
+<table class="table text-sm-left">
+  <thead>
+    <tr>
+      <th scope="col">Description</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Smiling</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.smile | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Gender</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.gender}}</td>
+    </tr>
+
+    <tr>
+      <th>Age</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.age}}</td>
+    </tr>
+
+    <tr>
+      <th>Moustache</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.facialHair?.moustache | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Beard</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.facialHair?.beard | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Sideburns</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.facialHair?.sideburns | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Glasses</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.glasses}}</td>
+    </tr>
+
+    <tr>
+      <th>Anger</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.emotion?.anger | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Contempt</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.emotion?.contempt | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Disgust</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.emotion?.disgust | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Fear</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.emotion?.fear | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Happiness</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.emotion?.happiness | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Neutral</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.emotion?.neutral | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Sadness</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.emotion?.sadness | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>Surprise</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.emotion?.surprise | percent}}</td>
+    </tr>
+
+    <tr>
+      <th>EyeMakeup</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.makeup?.eyeMakeup | boolToYesNo}}</td>
+    </tr>
+
+    <tr>
+      <th>LipMakeup</th>
+      <td>{{faceApiResponse[0]?.faceAttributes?.makeup?.lipMakeup | boolToYesNo}}</td>
+    </tr>
+
+  </tbody>
+
+</table>

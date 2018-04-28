@@ -1,0 +1,58 @@
+<main role="main">
+  <section class="jumbotron text-center">
+    <div class="container">
+
+      <h1 class="jumbotron-heading">Microsoft Azure Cognitive Services</h1>
+      <p class="lead text-muted">This demo application uses Angular to take a picture and read it from the Microsoft Cognitive Services API</p>
+      <form #f="ngForm">
+        <div class="form-group">
+          <input type="text" class="form-control" name="subscriptionKey" id="subscriptionKey" [(ngModel)]="subscriptionKey" required
+            placeholder="Enter your Subscription Key">
+        </div>
+        <button (click)="processImage()" [disabled]="!f?.valid" class="btn btn-primary my-2">Take picture</button>
+      </form>
+
+      <p>
+        <button *ngIf="faceApiResponse | async" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+          See full reponse
+        </button>
+      </p>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div *ngIf="faceApiResponse | async as response; else waiting">
+
+            <app-table [faceApiResponse]="response"></app-table>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Full reponse from FaceAPI</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body  text-sm-left">
+                    <pre>{{response | json}}</pre>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Modal -->
+
+          <ng-template #waiting>waiting for you to take a picture</ng-template>
+        </div>
+        <div class="col-md-6">
+          <img *ngIf="imageString" [src]="imageString" alt="imageString">
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
