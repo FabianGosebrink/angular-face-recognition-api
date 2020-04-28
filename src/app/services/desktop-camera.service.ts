@@ -1,22 +1,20 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 declare const window: any;
 
-@Injectable()
 export class DesktopCameraService {
   private getMediaDevices(): any {
     const mediaDevices =
       (window.navigator.mozGetUserMedia || window.navigator.webkitGetUserMedia
         ? {
-            getUserMedia: function(options: any) {
+            getUserMedia: (options: any) => {
               return new Promise((resolve, reject) => {
                 (
                   window.navigator.mozGetUserMedia ||
                   window.navigator.webkitGetUserMedia
                 ).call(window.navigator, options, resolve, reject);
               });
-            }
+            },
           }
         : null) || window.navigator.mediaDevices;
 
@@ -24,15 +22,14 @@ export class DesktopCameraService {
   }
 
   getPhoto(): Observable<string> {
-    return Observable.create((observer: any) => {
+    return new Observable((observer: any) => {
       this.getMediaDevices()
         .getUserMedia({ video: true, audio: false })
         .then(
           (stream: any) => {
-            const vendorURL = window.URL || window.webkitURL;
             const doc = document;
             const videoElement = doc.createElement('video');
-            videoElement.src = vendorURL.createObjectURL(stream);
+            videoElement.srcObject = stream;
             videoElement.play();
 
             const takePhotoInternal = () => {
@@ -86,7 +83,7 @@ export class DesktopCameraService {
             } else {
               videoElement.addEventListener(
                 'canplay',
-                function() {
+                function () {
                   takePhotoInternal();
                 },
                 false

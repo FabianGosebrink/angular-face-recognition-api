@@ -1,4 +1,4 @@
-interface FaceRecognitionResponse {
+export interface FaceRecognitionResponse {
   faceId: string;
   faceRectangle: FaceRectangle;
   faceAttributes: FaceAttributes;

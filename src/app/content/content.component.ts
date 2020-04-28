@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { FaceRecognitionService } from '../services/face-recognition.service';
-import { AbstractCameraService } from '../services/abstract-camera.service';
+import { FaceRecognitionResponse } from '../models/face.model';
+import { DesktopCameraService } from '../services/desktop-camera.service';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+  styleUrls: ['./content.component.css'],
 })
 export class ContentComponent {
   imageString = '';
@@ -16,7 +17,7 @@ export class ContentComponent {
 
   constructor(
     private faceRecognitionService: FaceRecognitionService,
-    private cameraService: AbstractCameraService
+    private cameraService: DesktopCameraService
   ) {}
 
   processImage() {
@@ -25,7 +26,7 @@ export class ContentComponent {
     }
 
     this.faceApiResponse = this.cameraService.getPhoto().pipe(
-      switchMap(base64Image => {
+      switchMap((base64Image: string) => {
         this.imageString = base64Image;
         return this.faceRecognitionService.scanImage(
           this.subscriptionKey,

@@ -6,14 +6,8 @@ import { ContentComponent } from './content/content.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FormsModule } from '@angular/forms';
 import { BoolToYesNoPipe } from './pipes/bool-to-yes-no/bool-to-yes-no.pipe';
-import {
-  AbstractCameraService,
-  cameraFactory
-} from './services/abstract-camera.service';
 import { DesktopCameraService } from './services/desktop-camera.service';
 import { FaceRecognitionService } from './services/face-recognition.service';
-import { MobileCameraService } from './services/mobile-camera.service';
-import { PlatformInformationProvider } from './services/platform-information.provider';
 import { TableComponent } from './table/table.component';
 
 @NgModule({
@@ -22,20 +16,14 @@ import { TableComponent } from './table/table.component';
     NavigationComponent,
     ContentComponent,
     BoolToYesNoPipe,
-    TableComponent
+    TableComponent,
   ],
   imports: [FormsModule, BrowserModule, HttpClientModule],
   providers: [
     DesktopCameraService,
-    MobileCameraService,
+    DesktopCameraService,
     FaceRecognitionService,
-    PlatformInformationProvider,
-    {
-      provide: AbstractCameraService,
-      useFactory: cameraFactory,
-      deps: [PlatformInformationProvider]
-    }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
