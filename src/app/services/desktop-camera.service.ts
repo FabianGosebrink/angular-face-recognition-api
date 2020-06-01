@@ -1,7 +1,9 @@
 import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
 
 declare const window: any;
 
+@Injectable()
 export class DesktopCameraService {
   private getMediaDevices(): any {
     const mediaDevices =
